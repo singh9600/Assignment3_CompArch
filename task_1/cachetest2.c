@@ -37,6 +37,8 @@ int main (int argc, char *argv[])
   /* declare variables; examples, adjust for task */
   int *a;
   int *b;
+  int randNum = 0;
+  int temp = 0;
   long int sum = 0;
   
   /* parameter parsing task 1 */
@@ -68,11 +70,11 @@ int main (int argc, char *argv[])
   }
 
   /* randomise array b */
-  for(int index = 0; index < N; index++) {
-    int randNum = (rand() % N);
-    int temp = a[randNum];
-    a[randNum] = a[N - 1 - randNum];
-    a[N - 1 - randNum] = temp;
+  for(int index = 0; index < 2*N; index++) {
+    randNum = (rand() % N);
+    temp = b[randNum];
+    b[randNum] = b[N - 1 - randNum];
+    b[N - 1 - randNum] = temp;
   }
 	 
   t1 = getTime();
@@ -88,7 +90,9 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("time: %6.2f secs\n",(t2 - t1));
+  printf("time: %6.5f secs\n",(t2 - t1));
+  printf("time per iteration: %6.5f nanosecs\n",(1000000000)*(t2 - t1)/(M*N));
+  printf("size of array in KB: %d KB\n", 4*N/1024);
   printf("sum: %ld\n", sum);
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 

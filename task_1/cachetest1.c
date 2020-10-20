@@ -83,7 +83,9 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
   
   /* output; examples, adjust for task */
-  printf("time: %6.2f secs\n",(t2 - t1));
+  printf("time: %6.5f secs\n",(t2 - t1));
+  printf("time per iteration: %6.5f nanosecs\n",(1000000000)*(t2 - t1)/(M*N));
+  printf("size of array in KB: %d KB\n", 4*N/1024);
   printf("sum: %ld\n", sum);
 
   /* IMPORTANT: also print the result of the code, e.g. the sum, 
