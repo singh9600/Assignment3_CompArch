@@ -82,9 +82,12 @@ int main (int argc, char *argv[])
   /***************************************/
 	t2 = getTime(); 
   
+  double timePerIter = (1000000000)*(t2 - t1)/(M);
+  timePerIter = timePerIter/N;
+
   /* output; examples, adjust for task */
   printf("time: %6.5f secs\n",(t2 - t1));
-  printf("time per iteration: %6.5f nanosecs\n",(1000000000)*(t2 - t1)/(M*N));
+  printf("time per iteration: %6.5lf nanosecs\n",timePerIter);
   printf("size of array in KB: %d KB\n", 4*N/1024);
   printf("sum: %ld\n", sum);
 
