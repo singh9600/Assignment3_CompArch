@@ -4,6 +4,8 @@
 #include <sys/time.h>
 #include <time.h>
 
+#define min(a, b) (((a) < (b)) ? (a) : (b))
+
 double getTime(){
   struct timeval t;
   double sec, msec;
@@ -21,14 +23,11 @@ int main (int argc, char *argv[])
 {
     double t1, t2; 
     unsigned int N = 1000;
-    // As the cache of my processor is 128 KB, each core would get 32 KB.
-    // Total doubles in 32 KB = 4095 => sqrt(4096) = 64
-    // Closest factor of 1000 to 64 is 50
-    unsigned int K = 50; // length of the block
+    unsigned int K = 8; // length of the block
 
-    double *a[N];
-    double *b[N];
-    double *c[N];
+    double **a = (double **)malloc(N * sizeof(double *));
+    double **b = (double **)malloc(N * sizeof(double *));;
+    double **c = (double **)malloc(N * sizeof(double *));
 
     for(int i = 0; i < N; i++)
     {
@@ -52,9 +51,9 @@ int main (int argc, char *argv[])
     for(int i = 0; i < N; i+=K) {
         for(int j = 0; j < N; j+=K) {
             for(int k = 0; k < N; k+=K) {
-                for(int ii = i; ii < i+K; ii++) {
-                    for(int jj = j; jj < j+K; jj++) {
-                        for(int kk = k; kk < k+K; kk++) {
+                for(int ii = i; ii < min(i+K, N); ii++) {
+                    for(int jj = j; jj < min(j+K, N); jj++) {
+                        for(int kk = k; kk < min(k+K, N); kk++) {
                             c[ii][jj] = c[ii][jj] + a[ii][kk]*b[kk][jj];
                         }
                     }
@@ -66,6 +65,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
     printf("time: %6.5f secs\n",(t2 - t1));
+    printf("printing an element to prevent optimisation: %f\n", c[N/2][N/2]);
 
     free(a);
     free(b);

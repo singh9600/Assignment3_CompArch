@@ -1,0 +1,32 @@
+#!/bin/bash
+
+./cachetest1 --repetitions 1000000 --array_size 2048 >> values1.txt
+./cachetest2 --repetitions 1000000 --array_size 2048 >> values2.txt
+./cachetest1 --repetitions 500000 --array_size 4096 >> values1.txt
+./cachetest2 --repetitions 500000 --array_size 4096 >> values2.txt
+./cachetest1 --repetitions 250000 --array_size 8192 >> values1.txt
+./cachetest2 --repetitions 250000 --array_size 8192 >> values2.txt
+./cachetest1 --repetitions 125000 --array_size 16384 >> values1.txt
+./cachetest2 --repetitions 125000 --array_size 16384 >> values2.txt
+./cachetest1 --repetitions 62500 --array_size 32768 >> values1.txt
+./cachetest2 --repetitions 62500 --array_size 32768 >> values2.txt
+./cachetest1 --repetitions 31250 --array_size 65536 >> values1.txt
+./cachetest2 --repetitions 31250 --array_size 65536 >> values2.txt
+./cachetest1 --repetitions 15625 --array_size 131072 >> values1.txt
+./cachetest2 --repetitions 15625 --array_size 131072 >> values2.txt
+./cachetest1 --repetitions 7812 --array_size 262144 >> values1.txt
+./cachetest2 --repetitions 7812 --array_size 262144 >> values2.txt
+./cachetest1 --repetitions 3906 --array_size 524288 >> values1.txt
+./cachetest2 --repetitions 3906 --array_size 524288 >> values2.txt
+./cachetest1 --repetitions 2000 --array_size 1048576 >> values1.txt
+./cachetest2 --repetitions 2000 --array_size 1048576 >> values2.txt
+./cachetest1 --repetitions 1000 --array_size 2097152 >> values1.txt
+./cachetest2 --repetitions 1000 --array_size 2097152 >> values2.txt
+./cachetest1 --repetitions 500 --array_size 4194304 >> values1.txt
+./cachetest2 --repetitions 500 --array_size 4194304 >> values2.txt
+./cachetest1 --repetitions 500 --array_size 8388608 >> values1.txt
+./cachetest2 --repetitions 500 --array_size 8388608 >> values2.txt
+./cachetest1 --repetitions 500 --array_size 16777216 >> values1.txt
+./cachetest2 --repetitions 500 --array_size 16777216 >> values2.txt
+./cachetest1 --repetitions 500 --array_size 33554432 >> values1.txt
+./cachetest2 --repetitions 500 --array_size 33554432 >> values2.txt

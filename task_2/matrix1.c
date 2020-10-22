@@ -22,10 +22,10 @@ int main (int argc, char *argv[])
     double t1, t2; 
     unsigned int N = 1000;
 
-    double *a[N];
-    double *b[N];
-    double *c[N];
-
+    double **a = (double **)malloc(N * sizeof(double *));
+    double **b = (double **)malloc(N * sizeof(double *));;
+    double **c = (double **)malloc(N * sizeof(double *));
+    
     for(int i = 0; i < N; i++)
     {
         a[i] = (double *)malloc(N * sizeof(double));
@@ -56,6 +56,7 @@ int main (int argc, char *argv[])
 	t2 = getTime(); 
 
     printf("time: %6.5f secs\n",(t2 - t1));
+    printf("printing an element to prevent optimisation: %f\n", c[N/2][N/2]);
 
     free(a);
     free(b);

@@ -37,7 +37,8 @@ int main (int argc, char *argv[])
   /* declare variables; examples, adjust for task */
   int *a;
   int *b;
-  int randNum = 0;
+  int randNum1 = 0;
+  int randNum2 = 0;
   int temp = 0;
   long int sum = 0;
   
@@ -71,10 +72,11 @@ int main (int argc, char *argv[])
 
   /* randomise array b */
   for(int index = 0; index < 2*N; index++) {
-    randNum = (rand() % N);
-    temp = b[randNum];
-    b[randNum] = b[N - 1 - randNum];
-    b[N - 1 - randNum] = temp;
+    randNum1 = (rand() % N);
+    randNum2 = (rand() % N);
+    temp = b[randNum1];
+    b[randNum1] = b[randNum2];
+    b[randNum2] = temp;
   }
 	 
   t1 = getTime();

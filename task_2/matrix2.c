@@ -22,10 +22,10 @@ int main (int argc, char *argv[])
     double t1, t2; 
     unsigned int N = 1000;
 
-    double *a[N];
-    double *b[N];
-    double *tempB[N];
-    double *c[N];
+    double **a = (double **)malloc(N * sizeof(double *));
+    double **b = (double **)malloc(N * sizeof(double *));;
+    double **tempB = (double **)malloc(N * sizeof(double *));
+    double **c = (double **)malloc(N * sizeof(double *));
 
     for(int i = 0; i < N; i++)
     {
@@ -44,6 +44,10 @@ int main (int argc, char *argv[])
         }
     }
 
+    t1 = getTime();
+    /* code to be measured goes here */
+    /***************************************/
+
     // transposing the matrix b
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
@@ -51,22 +55,21 @@ int main (int argc, char *argv[])
         }
     }
 
-    t1 = getTime();
-    /* code to be measured goes here */
-    /***************************************/
     for(int i = 0; i < N; i++) {
         for(int j = 0; j < N; j++) {
             for(int k = 0; k < N; k++) {
-                c[i][j] = c[i][j] + a[i][k]*tempB[k][j];
+                c[i][j] = c[i][j] + a[i][k]*tempB[j][k];
             }
         }
     }
     /***************************************/
 	t2 = getTime(); 
+    printf("printing an element to prevent optimisation: %f\n", c[N/2][N/2]);
 
     printf("time: %6.5f secs\n",(t2 - t1));
 
     free(a);
     free(b);
     free(c);
+    free(tempB);
 }
